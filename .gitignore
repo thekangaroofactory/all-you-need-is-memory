@@ -48,6 +48,9 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-# -- Quarto 
+# -- Quarto
 /.quarto/
 /_manuscript
+
+**/*.quarto_ipynb
+_freeze
