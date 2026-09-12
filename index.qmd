@@ -1,5 +1,6 @@
 ---
 title: All You Need Is Memory
+subtitle: A proposal to manage JavaScript dependencies from within R packages.
 author:
   - name: Philippe Peret
     orcid: 0009-0003-9666-7490
@@ -15,9 +16,9 @@ keywords:
   - JavaScript
   - Dependencies
 abstract: |
-  By nature, R/Shiny apps have JavaScript dependencies, most of them being encapsulated by Shiny so that users do 
+  By nature, R/Shiny web applications have JavaScript dependencies, most of them being encapsulated by Shiny so that users do 
   not need to worry about them. When they want to extend their applications beyond the baseline, developpers need to inject
-  custom JavaScript into the client side, which appears as a *leak* into this encapsulation, especially if the feature
+  custom JavaScript into the client side, which appears as a *leak* into this encapsulation, especially when the feature
   is delivered through a package.
 plain-language-summary: |
   TO BE IDENTiFIED WHERE IT GOES ...
@@ -33,23 +34,13 @@ number-sections: true
 
 ## Notes
 
-Article template:
-https://github.com/quarto-ext/manuscript-template-rstudio
+Article template: https://github.com/quarto-ext/manuscript-template-rstudio
 
-All you need is memory.
-A proposal to manage JavaScript dependencies from within R packages.
-
-Write a formal proposal.
-
-Le papier pourrait aller un peu plus loin que blog / wiki avec la description de functions package qui auraient
-une dépendance en commun ou au contraire des dépendances spécifiques.
+Le papier pourrait aller plus loin que blog / wiki avec la description de functions package qui auraient une dépendance en commun ou au contraire des dépendances spécifiques.
 
 UI / Server considerations
 
-Si on utilise le package côté UI, on ne pourra pas utiliser session$userData (il faut vérifier quand même...)
-D'un autre côté on ne pourra pas mettre à jour un widget côté UI dc on s'en fout
-il faut que la function with_js check si userData est bien là, sinon on est côté UI on ne fait rien !
-au pire le js sera introduduit côté server si on en a besoin (call update function)
+Si on utilise le package côté UI, on ne pourra pas utiliser session\$userData (il faut vérifier quand même...) D'un autre côté on ne pourra pas mettre à jour un widget côté UI dc on s'en fout il faut que la function with_js check si userData est bien là, sinon on est côté UI on ne fait rien ! au pire le js sera introduduit côté server si on en a besoin (call update function)
 
 Execution order considerations
 
@@ -57,30 +48,37 @@ insertUI with immediate to avoid execution ordering issue (ie insert the js befo
 
 Extension pour valider que ça marche au sein d'un module shiny
 
-https://www.r-bloggers.com/add-your-blog/
-https://journal.r-project.org/
-https://www.jstatsoft.org/index
+https://www.r-bloggers.com/add-your-blog/ https://journal.r-project.org/ https://www.jstatsoft.org/index
 
 ## Introduction
 
-Describe the context here.
+The Shiny package for R defines itself as a web development framework that requires "No web development skills"[^1].
+
+[^1]: Reference: the Shiny website <https://shiny.posit.co/>
+
+By web development skills, we mean knowledge of HTML, CSS & JavaScript languages.\
+The use of these languages has been ingeniously encapsulated within a framework that allows users to develop a web application based on their knowledge and proficiency in R.
+
+However, a framework naturally embodies a certain philosophy and imposes limitations on its implementation. To go beyond these limitations, the user must delve into the framework’s internal workings and incorporate all or part of the knowledge that it implements.
+
+This is the case when a Shiny user wants to use JavaScript features or use cases for which the package does not directly provide a function.\
+Then developers must not only generate a block of JavaScript code, but also package and send it to the client-side as a dependency.
+
+## Definition of the technical challenge
+
 Provide an example of JS dependency with code example.
 
 Extend to ShinyJS that uses this approach with useShinyJS.
 
 ## Data & Methods {#sec-data-methods}
 
-Describe the problem.
-Options to fix it.
+Describe the problem. Options to fix it.
 
 ## Conclusion
 
 ## References {.unnumbered}
 
-The official Shiny doc
-ShinyJS doc probably
-Other refs in Hadley W. books?
-my own stuff (check eBook)
+The official Shiny doc ShinyJS doc probably Other refs in Hadley W. books? my own stuff (check eBook)
 
 ::: {#refs}
 :::
